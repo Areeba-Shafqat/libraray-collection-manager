@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Zavia",
+        "author": "Ashfaq Ahmed",
+        "year": "1997",
+        "genre": "Self-Help, Philosophy",
+        "read": true
+    },
+    {
+        "title": "Towards Understanding Islam",
+        "author": "Abul A'la Maududi",
+        "year": "1940",
+        "genre": "Introduction to Islam",
+        "read": false
+    },
+    {
+        "title": "Islam: The Misunderstood Religion",
+        "author": "Muhammad Qutb\t",
+        "year": "1964",
+        "genre": "Islamic Awareness",
+        "read": false
+    },
+    {
+        "title": "Islam and Modern Challenges",
+        "author": "Dr. Muhammad Rafiuddin",
+        "year": "20th Century",
+        "genre": "Islamic Thought",
+        "read": false
+    },
+    {
+        "title": "The Reconstruction of Religious Thought in Islam",
+        "author": "Allama Iqbal",
+        "year": "1930",
+        "genre": "Philosophy, Religion",
+        "read": true
+    }
+]
