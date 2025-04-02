@@ -1,16 +1,18 @@
 import json
 
 class BookCollection:
+    """A class to manage a collection of books, allowing users to store and organize their reading materials."""
+
     
     def __init__(self):
-        # initialize a new book collection with an empty list and setup file storage.
-        self.book=[list]
+        """Initialize a new book collection with an empty list and setup file storage."""
+        self.book_list=[]
         self.storage_file="books_data.json"
         self.read_from_file()
     
     def read_from_file(self):
-        # load saved books from a JSON file into memory.
-        # if the file is not exist or currupted,start with an empty collection
+        """Load saved books from a JSON file into memory.
+        If the file is not exist or currupted,start with an empty collection."""
         try:
             with open(self.storage_file,"r") as file:
                 self.book_list =json.load(file)
@@ -18,12 +20,12 @@ class BookCollection:
             self.book_list=[]
             
     def save_to_file(self):
-        # store the current book collection to a json file for permanent storage
+        """Store the current book collection to a JSON file for permanent storage."""
         with open(self.storage_file,"w") as file:
             json.dump(self.book_list, file, indent=4)
             
     def create_new_book(self):
-        # add the new book tot the collection by gathering informationfrom the user
+        """Add the new book tot the collection by gathering informationfrom the user."""
         book_title=input("Enter book title: ")
         book_author=input("Enter book author: ")
         publication_year=input("Enter publication year: ")
@@ -42,7 +44,7 @@ class BookCollection:
         print("Book added successfully!\n")
         
     def book_delete(self):
-        # remove a book from the collection using its title
+        """Remove a book from the collection using its title."""
         book_title= input("Enter the title of the book to remove: ")
         
         for book in self.book_list:
@@ -54,13 +56,14 @@ class BookCollection:
         print("Book not found!\n")
         
     def find_book(self):
-        # search the books in the collection by title or author name.
+        """Search the books in the collection by title or author name."""
         search_type=input("Search by:\n1. Title\n2. Author\nEnter your choice: ")
         search_text=input("Enter search term: ").lower()
         found_books=[
             book 
             for book in self.book_list
-                if search_text in book["title"].lower() or search_text in book["author"].lower()
+            if search_text in book["title"].lower() 
+            or search_text in book["author"].lower()
         ]
         
         if found_books:
@@ -72,7 +75,7 @@ class BookCollection:
             print("No matching books found.\n")
      
     def update_book(self):
-        # modify the details of an existing book in the collection.
+        """Modify the details of an existing book in the collection."""
         book_title = input("Enter the title of the book you want to edit: ")
         for book in self.book_list:
             if book["title"].lower()==book_title.lower():
@@ -88,7 +91,7 @@ class BookCollection:
         print("Book not found!\n")
         
     def show_all_books(self):
-        # display all books in the collection with their details.
+        """Display all books in the collection with their details."""
         if not self.book_list:
             print("Your collection is empty.\n")
             return
@@ -97,12 +100,12 @@ class BookCollection:
         for index, book in enumerate(self.book_list,1):
             reading_status ="Read" if book["read"] else "Unread"
             print(
-                f"{index}. {book['title']}\t\t\t\t by {book['author']}\t\t\t ({book['year']}) - {book['genre']} - {reading_status}"
+                f"{index}. ({book['title']}) by ({book['author']}) in the year of ({book['year']}) for - ({book['genre']}) 'mode'- {reading_status}"
             )
         print()
 
     def show_reading_progress(self):
-        # calculate and display statistics about your reading progress.
+        """Calculate and display statistics about your reading progress."""
         total_books = len(self.book_list)
         completed_books = sum(1 for book in self.book_list if book["read"])
         completion_rate = (
@@ -112,7 +115,7 @@ class BookCollection:
         print(f"Reading progress: {completion_rate:.2f}%\n")
 
     def start_application(self):
-        # run the main application loop with a user-friendly menu interface.
+        """Run the main application loop with a user-friendly menu interface."""
         while True:
             print("📚 Welcome to Library Collection Manager! 📚")
             print("1. Add a new book")
@@ -142,9 +145,7 @@ class BookCollection:
                 break
             else:
                 print("Invalid choice. Please try again.\n")
-
-
-                 
+                
 
 if __name__=="__main__":
     book_manager=BookCollection()
